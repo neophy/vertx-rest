@@ -1,0 +1,12 @@
+.pmd
+*.class
+target
+.project
+.settings
+.classpath
+**/.DS_STORE
+target/**
+.idea/
+*.iml
+*.iws
+*.ser
