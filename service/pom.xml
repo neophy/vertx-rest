@@ -18,7 +18,7 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
-            <version>3.0.0</version>
+            <version>3.5.0</version>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
-            <artifactId>vertx-service-factory</artifactId>
+            <artifactId>vertx-web-client</artifactId>
             <version>3.5.0</version>
         </dependency>
         <dependency>
@@ -39,6 +39,13 @@
             <groupId>com.poc</groupId>
             <artifactId>domain</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.myntra</groupId>
+            <artifactId>myntra-oms-domain</artifactId>
+            <version>5.7.11-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
         <dependency>
@@ -75,7 +82,7 @@
                                     <manifestEntries>
                                         <Main-Class>io.vertx.core.Starter</Main-Class>
                                         <!--<Main-Verticle>io.vertx.blog.first.MyFirstVerticle</Main-Verticle>-->
-                                        <Main-Verticle>io.vertx.cnd.service.ChargeServiceController</Main-Verticle>
+                                        <Main-Verticle>io.vertx.cnd.service.verticle.ChargeServiceController</Main-Verticle>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
