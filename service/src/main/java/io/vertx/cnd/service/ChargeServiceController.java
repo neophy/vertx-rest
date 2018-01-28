@@ -18,14 +18,15 @@ public class ChargeServiceController extends AbstractVerticle {
 
         Router router = Router.router(vertx);
 
-        router.route(HttpMethod.GET, "/getOrder").handler(routingContext -> {
+        router.route(HttpMethod.GET, "/getOrder/:orderId").handler(routingContext -> {
 
+            Long orderId = Long.valueOf(routingContext.pathParams().get("orderId"));
             // This handler will be called for every request
             HttpServerResponse response = routingContext.response();
             response.putHeader("content-type", "text/plain");
 
             // Write to the response and end it
-            response.end("Hello Neoo from CSC");
+            response.end("Hello Neoo from Http method example " + orderId);
         });
 
         server.requestHandler(router::accept).listen(8080);
