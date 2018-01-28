@@ -12,7 +12,7 @@ import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.codec.BodyCodec;
 
 /**
- * Created by 16544 on 27/01/18.
+ * @author Neophy
  */
 public class ChargeServiceController extends AbstractVerticle {
 
@@ -25,10 +25,13 @@ public class ChargeServiceController extends AbstractVerticle {
         router.route(HttpMethod.GET, "/getOrder/:orderId").handler(routingContext -> {
 
             String orderId = routingContext.pathParams().get("orderId");
-
-            // This handler will be called for every request
             HttpServerResponse serverResponse = routingContext.response();
             serverResponse.putHeader("content-type", "text/plain");
+            // Sleep of 200 ms to static mimic the oms response time
+//            vertx.setTimer(200,id->
+//                    serverResponse.end("SERVER timer")
+//            );
+
 
             WebClient webClient = WebClient.create(vertx);
             webClient.get("oms.scmqa.myntra.com", "/myntra-oms-service/oms/order/" + orderId)
@@ -39,20 +42,11 @@ public class ChargeServiceController extends AbstractVerticle {
                         if (ar.succeeded()) {
                             // Obtain response
                             HttpResponse<JsonObject> response = ar.result();
-
-                            System.out.println("Received response with status code" + response);
-                            System.out.println("Received body of response with status code" + response.body().encodePrettily());
-
-                            serverResponse.end("SUCCESS FROM OMS: " + response.body().encodePrettily());
+                            serverResponse.end("SERVER : " + response.body().encodePrettily());
                         } else {
-                            System.out.println("Something went wrong " + ar.cause().fillInStackTrace());
-                            serverResponse.end("ERROR FROM OMS");
-
+                            serverResponse.end("ERROR FROM OMS: " + ar.cause().fillInStackTrace());
                         }
                     });
-
-            // Write to the response and end it
-//            serverResponse.end("Hello Neoo from Http method example \n" + response.toString());
         });
 
         server.requestHandler(router::accept).listen(8080);
