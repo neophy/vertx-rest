@@ -1,11 +1,11 @@
 package io.vertx.cnd.service.verticle;
 
-import com.myntra.oms.client.response.OrderResponse;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerResponse;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
@@ -31,17 +31,21 @@ public class ChargeServiceController extends AbstractVerticle {
             serverResponse.putHeader("content-type", "text/plain");
 
             WebClient webClient = WebClient.create(vertx);
-            webClient.get(8080, "oms.scmqa.myntra.com", "/myntra-oms-service/oms/order/" + orderId)
-                    .as(BodyCodec.json(OrderResponse.class))
+            webClient.get("oms.scmqa.myntra.com", "/myntra-oms-service/oms/order/" + orderId)
+                    .putHeader("Authorization", "Basic YTph")
+                    .putHeader("Accept", "application/json")
+                    .as(BodyCodec.jsonObject())
                     .send(ar -> {
                         if (ar.succeeded()) {
                             // Obtain response
-                            HttpResponse<OrderResponse> response = ar.result();
+                            HttpResponse<JsonObject> response = ar.result();
 
-                            System.out.println("Received response with status code" + response.statusCode());
-                            serverResponse.end("SUCCESS FROM OMS: " + response.statusMessage());
+                            System.out.println("Received response with status code" + response);
+                            System.out.println("Received body of response with status code" + response.body().encodePrettily());
+
+                            serverResponse.end("SUCCESS FROM OMS: " + response.body().encodePrettily());
                         } else {
-                            System.out.println("Something went wrong " + ar.cause().getMessage());
+                            System.out.println("Something went wrong " + ar.cause().fillInStackTrace());
                             serverResponse.end("ERROR FROM OMS");
 
                         }
