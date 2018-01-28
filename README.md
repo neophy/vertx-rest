@@ -9,6 +9,7 @@ to another verticle in the upcoming commits and both verticles can then talk to 
 
 This verticle also explains how to make REST api calls which includes GET calls with path params. 
 
-<b>WebClient<b>
+<b>WebClient</b>
+</br>
 The ChargeServiceController makes an http call to an external service to fetch data. It then decodes the AsyncResponse to JSON.
 
