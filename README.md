@@ -2,7 +2,8 @@
 
 This repository explains how to build a vertex app. from scratch. 
 Two verticles are defined: 
-The Main-Verticle named "Server" deploys the other ChargeServiceController verticle. 
+The Main-Verticle named "Server" deploys the other ChargeServiceController verticle. DeploymentOptions can be set at the time of
+deployment of a verticle to have as many instances of that verticle and is used in multi-core machines.
 
 This ChargeServiceController has routes defined to take and handle the http requests. The handler will be moved 
 to another verticle in the upcoming commits and both verticles can then talk to each other using event bus. 
