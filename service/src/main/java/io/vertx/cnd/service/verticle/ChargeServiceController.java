@@ -34,7 +34,7 @@ public class ChargeServiceController extends AbstractVerticle {
 
 
             WebClient webClient = WebClient.create(vertx);
-            webClient.get("oms.scmqa.myntra.com", "/myntra-oms-service/oms/order/" + orderId)
+            webClient.get("vertx.poc.doamin.name", "/poc/url" + orderId)
                     .putHeader("Authorization", "Basic YTph")
                     .putHeader("Accept", "application/json")
                     .as(BodyCodec.jsonObject())
@@ -44,7 +44,7 @@ public class ChargeServiceController extends AbstractVerticle {
                             HttpResponse<JsonObject> response = ar.result();
                             serverResponse.end("SERVER : " + response.body().encodePrettily());
                         } else {
-                            serverResponse.end("ERROR FROM OMS: " + ar.cause().fillInStackTrace());
+                            serverResponse.end("ERROR FROM SERVICE: " + ar.cause().fillInStackTrace());
                         }
                     });
         });
