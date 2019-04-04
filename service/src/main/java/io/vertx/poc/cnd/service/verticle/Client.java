@@ -1,4 +1,4 @@
-package io.vertx.cnd.service.verticle;
+package io.vertx.poc.cnd.service.verticle;
 
 import io.vertx.core.AbstractVerticle;
 

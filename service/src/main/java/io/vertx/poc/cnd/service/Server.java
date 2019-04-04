@@ -1,4 +1,4 @@
-package io.vertx.cnd.service;
+package io.vertx.poc.cnd.service;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
@@ -13,7 +13,7 @@ public class Server extends AbstractVerticle {
     public void start(Future<Void> fut) {
         // As MAC is 8 core and so running 8 instances of verticle
         DeploymentOptions options = new DeploymentOptions().setInstances(8);
-        vertx.deployVerticle("io.vertx.cnd.service.verticle.ChargeServiceController", options);
+        vertx.deployVerticle("ChargeServiceController", options);
     }
 }
 

@@ -1,4 +1,4 @@
-package io.vertx.cnd.service.util;
+package io.vertx.poc.cnd.service.util;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
