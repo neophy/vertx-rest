@@ -40,16 +40,6 @@
             <artifactId>domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.myntra</groupId>
-            <artifactId>myntra-oms-domain</artifactId>
-            <version>5.7.11-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.myntra</groupId>
-            <artifactId>myntra-commons</artifactId>
-            <version>5.0.0-SNAPSHOT</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
